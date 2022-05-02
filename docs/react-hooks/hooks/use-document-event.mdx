@@ -2,6 +2,9 @@
 sidebar_position: 2
 ---
 
+import ExampleWrapper from "@site/src/components/ExampleWrapper";
+import SimpleExample from "@site/src/examples/use-document-event/SimpleExample";
+
 # useDocumentEvent
 
 Данный хук значительно упрощает работу с событиями `document` и уменьшает количество шаблонного кода, который необходимо писать разработчику. А также автоматически следит за удалением добавленных слушателей после размонтировании компонента, чтобы избежать утечек памяти.
@@ -52,3 +55,7 @@ function Example() {
   return <div>{`Меню было открыто ${count} раз`}</div>;
 }
 ```
+
+<ExampleWrapper>
+  <SimpleExample />
+</ExampleWrapper>
