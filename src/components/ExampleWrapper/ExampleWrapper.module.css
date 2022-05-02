@@ -1,0 +1,17 @@
+.wrapper {
+  background-color: var(--ifm-code-background);
+  border-radius: var(--ifm-code-border-radius);
+  box-shadow: var(--ifm-global-shadow-lw);
+}
+
+.title {
+  color: var(--ifm-link-color);
+  font-size: var(--ifm-h4-font-size);
+  font-weight: var(--ifm-heading-font-weight);
+  padding: var(--ifm-pre-padding);
+  border-bottom: 1px solid var(--ifm-hr-border-color);
+}
+
+.children {
+  padding: var(--ifm-pre-padding);
+}
