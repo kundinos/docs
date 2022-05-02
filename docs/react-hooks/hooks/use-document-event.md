@@ -3,3 +3,52 @@ sidebar_position: 2
 ---
 
 # useDocumentEvent
+
+Данный хук значительно упрощает работу с событиями `document` и уменьшает количество шаблонного кода, который необходимо писать разработчику. А также автоматически следит за удалением добавленных слушателей после размонтировании компонента, чтобы избежать утечек памяти.
+
+## Пример использования
+
+Для наглядности давайте реализуем простой компонент и сравним получившийся код с использованием `useDocumentEvent` и без него.
+
+Задача проста — необходимо реализовать компонент, который будет считать сколько раз пользователь открыл контекстное меню на сайте с помощью правой кнопки мыши.
+
+### Без useDocumentEvent
+
+```tsx
+import { useCallback, useEffect, useState } from "react";
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  const handleContextMenu = useCallback(() => {
+    setCount((prev) => prev + 1);
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("contextmenu", handleContextMenu);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, [handleContextMenu]);
+
+  return <div>{`Меню было открыто ${count} раз`}</div>;
+}
+```
+
+### Используем useDocumentEvent
+
+```tsx
+import { useState } from "react";
+import { useDocumentEvent } from "@kundinos/react-hooks";
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  useDocumentEvent("contextmenu", () => {
+    setCount((prev) => prev + 1);
+  });
+
+  return <div>{`Меню было открыто ${count} раз`}</div>;
+}
+```
