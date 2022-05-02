@@ -33,5 +33,4 @@ npm install @kundinos/react-hooks
 - [useScroll](./hooks/use-scroll) – реактивный доступ к позиции скрола;
 - [useSwitch](./hooks/use-switch) / [useToggle](./hooks/use-toggle) — упрощает создание компонентов с состояниями включен/выключен;
 - [useTimeout](./hooks/use-timeout) — деклатиративная версия setTimeout;
-- [useGlobalState](./hooks/use-global-state) — переиспользуем состояние без контекстов;
 - [useWindowEvent](./hooks/use-window-event) — подписываемся на события `window`;
