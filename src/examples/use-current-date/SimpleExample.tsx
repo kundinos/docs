@@ -14,8 +14,15 @@ function SimpleExample() {
 
   return (
     <div>
-      <p>{`Текущая дата: ${month}.${date}.${fullYear}`}</p>
-      <p>{`Текущее время: ${hours}:${minutes}:${seconds}`}</p>
+      <p style={{ marginBottom: "10px" }}>
+        {`Текущая дата: `}
+        <strong>{`${month}.${date}.${fullYear}`}</strong>
+      </p>
+
+      <p style={{ marginBottom: "0" }}>
+        {`Текущее время: `}
+        <strong>{`${hours}:${minutes}:${seconds}`}</strong>
+      </p>
     </div>
   );
 }

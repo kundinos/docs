@@ -4,10 +4,11 @@ sidebar_position: 1
 
 import ExampleWrapper from '@site/src/components/ExampleWrapper';
 import SimpleExample from '@site/src/examples/use-current-date/SimpleExample.tsx';
+import ManyPeriodsExample from '@site/src/examples/use-current-date/ManyPeriodsExample.tsx';
 
 # useCurrentDate
 
-Используется для получения реактивного значения текущей даты и времени, что может быть полезно при создании календарей, таймеров обратного отсчета и любого другого вывода даты/времени, который должен обновляться.
+Используется для получения реактивного значения текущей даты и времени, что может быть полезно при создании календарей, таймеров обратного отсчета и любого другого вывода даты/времени, который должен автоматически обновляться.
 
 ## Поведение по умолчанию
 
@@ -37,3 +38,17 @@ function Example() {
 ```
 
 <ExampleWrapper><SimpleExample /></ExampleWrapper>
+
+## Период обновления даты
+
+В зависимости от потребностей может возникнуть ситуация, когда не требуется обновлять дату слишком часто, например, будет достаточно обновлять значение раз в минуту, вместо того, чтобы делать это каждую секунду. И этого поведения можно легко добиться, передав в хук параметр `every`, который может принимать одно из следующих значений `millisecond`, `second`, `minute`, `hour`, `day` или произвольное число миллисекунд.
+
+```tsx
+// Будет обновляться каждые 5 секунд
+const currentDate = useCurrentDate({ every: 5 * 1000 });
+
+// Будет обновляться каждый час
+const currentDate = useCurrentDate({ every: "hour" });
+```
+
+<ExampleWrapper title='Пример работы'><ManyPeriodsExample /></ExampleWrapper>
