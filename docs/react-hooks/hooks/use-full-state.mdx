@@ -1,0 +1,84 @@
+---
+sidebar_position: 2
+---
+
+import ExampleWrapper from "@site/src/components/ExampleWrapper";
+import SimpleExample from "@site/src/examples/use-full-state/SimpleExample";
+
+# useFullState
+
+Один из самых часто задаваемых вопросов, которые возникают после перехода от классов к
+функциональным компонентам и хукам, звучит так — как получить предыдущее состояние из `useState`?
+
+Ответ — на данный момент прямого доступа к предудыщему состоянию нет, но это легко решается с помощью пары базовых хуков.
+
+## Решение от разработчиков React
+
+На страницах официальной документации уже есть [пример кода](https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state), который позволяет получать предыдущее значение состояния
+
+```tsx
+function Counter() {
+  const [count, setCount] = useState(0);
+  const prevCountRef = useRef();
+  const prevCount = prevCountRef.current;
+
+  useEffect(() => {
+    prevCountRef.current = count;
+  }, []);
+
+  return (
+    <div>
+      Текущее: {count}, предыдущее: {prevCount}
+    </div>
+  );
+}
+```
+
+И далее разработчики React соглашаются, что это выглядит слегка избыточно, особенно когда необходимо получить предыдущее значение сразу у нескольких состояний,
+и предлагают вынести часть логики в пользовательский хук. Например, вот так:
+
+```tsx
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  const prevCount = usePrevious(count);
+
+  return (
+    <div>
+      Текущее: {count}, предыдущее: {prevCount}
+    </div>
+  );
+}
+```
+
+Но даже с таким подходом мы были вынуждены написать дополнительную строчку кода, а также нам придется таскать этот хук из проекта в проект.
+
+## Используем useFullState
+
+Поэтому можно пойти иным путем и вместо использования двух хуков расширить реализацию стандартного `useState` и добавить в него третий параметр,
+который будет возвращать предыдущее значение.
+
+```tsx
+import { useFullState } from "@kundinos/react-hooks";
+
+function Counter() {
+  const [count, setCount, prevCount] = useFullState(0);
+
+  return (
+    <div>
+      Текущее: {count}, предыдущее: {prevCount}
+    </div>
+  );
+}
+```
+
+<ExampleWrapper>
+  <SimpleExample />
+</ExampleWrapper>
