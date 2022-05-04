@@ -29,7 +29,7 @@ npm install @kundinos/react-hooks
 - [useInterval](./hooks/use-interval) — деклатиративная версия setInterval;
 - [useKeyboardEvents](./hooks/use-keyboard-events) — подписка на события клавиатуры;
 - [useNativeEvent](./hooks/use-native-event) — помогает подписаться на событие любого HTML-элемента;
-- [useResize](./hooks/use-resize) — подписываемся на событие изменения размера страницы;
+- [useWindowResize](./hooks/use-window-resize) — подписываемся на событие изменения размера страницы;
 - [useScroll](./hooks/use-scroll) – реактивный доступ к позиции скрола;
 - [useSwitch](./hooks/use-switch) / [useToggle](./hooks/use-toggle) — упрощает создание компонентов с состояниями включен/выключен;
 - [useTimeout](./hooks/use-timeout) — деклатиративная версия setTimeout;
