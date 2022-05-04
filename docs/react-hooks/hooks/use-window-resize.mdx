@@ -1,0 +1,60 @@
+---
+sidebar_position: 7
+---
+
+import ExampleWrapper from "@site/src/components/ExampleWrapper";
+import SimpleExample from "@site/src/examples/use-window-resize/SimpleExample";
+
+# useWindowResize
+
+Современный веб-сайт трудно представить без адаптивного дизайна, который не только подстраивается под ширину устройста,
+но и корректно ведёт себя при изменении размеров окна браузера. Зачастую логика перестроения страницы может быть оправданно сложной и
+начинает выходить за пределы `CSS` и `media-запросов`. Поэтому у разработчиков появляется необходимость подписываться на событие `resize`
+внутри компонента.
+
+## Без использования useWindowResize
+
+```tsx
+import { useState, useEffect } from "react";
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  function handleResize() {
+    setCount((prev) => prev + 1);
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return <div>{`Размеры изменились ${count} раз`}</div>;
+}
+```
+
+## Используем useWindowResize
+
+Написанный выше код не только выглядит избыточно, но и заставляет разработчика помнить о необходимости правильного удаления слушателя, чтобы избежать утечек памяти. С ростом проекта количество шаблонного кода растёт, может замедлить разработку и абсоолютно точно ухудшаем его читаемость. Поэтому пользовательский хук поможет не только сократить количество кода, но и сфокусироваться на написании логики приложения.
+
+```tsx
+import { useState } from "react";
+import { useWindowResize } from "@kundinos/react-hooks";
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  useWindowResize(() => {
+    setCount((prev) => prev + 1);
+  });
+
+  return <div>{`Размеры изменились ${count} раз`}</div>;
+}
+```
+
+<ExampleWrapper>
+  <SimpleExample />
+</ExampleWrapper>
