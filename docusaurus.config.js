@@ -63,7 +63,7 @@ const config = {
               },
               {
                 label: "telegram-bot-api",
-                to: "/docs/telegram-bot-api",
+                to: "/docs/telegram-bot-api/motivation",
               },
             ],
           },
@@ -87,10 +87,6 @@ const config = {
           {
             title: "More",
             items: [
-              {
-                label: "Blog",
-                to: "/blog",
-              },
               {
                 label: "GitHub",
                 href: "https://github.com/@kundinos",
