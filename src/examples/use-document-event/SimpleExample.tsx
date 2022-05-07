@@ -1,4 +1,5 @@
 import React, { memo, useState } from "react";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 import { useDocumentEvent } from "@kundinos/react-hooks";
 
 function Example() {
@@ -11,4 +12,8 @@ function Example() {
   return <div>{`Меню было открыто ${count} раз`}</div>;
 }
 
-export default memo(Example);
+function Wrapper() {
+  return <BrowserOnly>{() => <Example />}</BrowserOnly>;
+}
+
+export default memo(Wrapper);

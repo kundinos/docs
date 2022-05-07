@@ -1,4 +1,5 @@
 import React, { useState, memo } from "react";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 import { useResize } from "@kundinos/react-hooks";
 
 import plural from "@site/src/utils/plural";
@@ -13,4 +14,8 @@ function Example() {
   return <div>{`Размеры изменились ${count} ${plural(count, ["раз", "раза", "раз"])}`}</div>;
 }
 
-export default memo(Example);
+function Wrapper() {
+  return <BrowserOnly>{() => <Example />}</BrowserOnly>;
+}
+
+export default memo(Wrapper);
