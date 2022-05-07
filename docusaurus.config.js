@@ -9,7 +9,7 @@ const config = {
   title: "@kundinos",
   tagline: "Projects by Yury Kundin",
   url: "https://kundinos.ru",
-  baseUrl: "/",
+  baseUrl: "/docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
