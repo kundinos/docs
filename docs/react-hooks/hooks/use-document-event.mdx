@@ -2,6 +2,7 @@
 sidebar_position: 2
 ---
 
+import BrowserOnly from "@docusaurus/BrowserOnly";
 import ExampleWrapper from "@site/src/components/ExampleWrapper";
 import SimpleExample from "@site/src/examples/use-document-event/SimpleExample";
 
@@ -57,5 +58,7 @@ function Example() {
 ```
 
 <ExampleWrapper>
-  <SimpleExample />
+  <BrowserOnly>
+    <SimpleExample />
+  </BrowserOnly>
 </ExampleWrapper>
