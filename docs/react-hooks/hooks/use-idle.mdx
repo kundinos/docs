@@ -1,0 +1,70 @@
+---
+sidebar_position: 3
+---
+
+import ExampleWrapper from "@site/src/components/ExampleWrapper";
+import SimpleExample from "@site/src/examples/use-idle/SimpleExample";
+import CustomTimeExample from "@site/src/examples/use-idle/CustomTimeExample";
+import EventsExample from "@site/src/examples/use-idle/EventsExample";
+
+# useIdle
+
+Позволяет подписываться на события, когда пользователь бездействует или начал что-то делать, после своего бездействия в рамках одной вкладки браузера.
+Это может быть полезно для написания различной логики. Например, вы разрабатываете игру и вам необходимо ставить её на паузу, когда пользователь переключился в другую вкладку в браузере, а после того,
+как пользователь вернулся на вкладку с вашей игрой автоматически запускать её.
+
+## Пример использования
+
+```tsx
+import { useIdle } from "@kundinos/react-hooks";
+
+function Example() {
+  const isIdle = useIdle();
+
+  return <div>{`Пользователь ${isIdle ? "бездействует" : "активен"}`}</div>;
+}
+```
+
+<ExampleWrapper>
+  <SimpleExample />
+</ExampleWrapper>
+
+## Произвольное время до бездействия
+
+По умолчанию пользователь бездействует, если он не проявляет никакой активности в течение 3-х секунд. Но этот интервал можно изменять в зависимости от потребностей вашего приложения.
+
+```tsx
+import { useIdle } from "@kundinos/react-hooks";
+
+function Example() {
+  const isIdle = useIdle({ timeout: 10 * 1000 });
+
+  return <div>{`Пользователь ${isIdle ? "бездействует" : "активен"}`}</div>;
+}
+```
+
+<ExampleWrapper>
+  <CustomTimeExample />
+</ExampleWrapper>
+
+## События бездействия и пробуждения
+
+В некоторых случаях может потребоваться не только получить флаг "активен/бездействует", но и выполнить дополнительную логику.
+Для этого хук предоставляет возможность подписываться на события `onIdle` и `onWakeUp`, например, чтобы логировать их как на примере ниже:
+
+```tsx
+import { useIdle } from "@kundinos/react-hooks";
+
+function Example() {
+  useIdle({
+    onWakeUp: () => console.log("Пользователь проснулся!"),
+    onIdle: () => console.log("Пользователь бездействует…"),
+  });
+
+  return <div>Откройте консоль, чтобы увидеть результат :)</div>;
+}
+```
+
+<ExampleWrapper>
+  <EventsExample />
+</ExampleWrapper>
