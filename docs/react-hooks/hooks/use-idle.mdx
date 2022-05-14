@@ -34,13 +34,7 @@ function Example() {
 По умолчанию пользователь бездействует, если он не проявляет никакой активности в течение 3-х секунд. Но этот интервал можно изменять в зависимости от потребностей вашего приложения.
 
 ```tsx
-import { useIdle } from "@kundinos/react-hooks";
-
-function Example() {
-  const isIdle = useIdle({ timeout: 10 * 1000 });
-
-  return <div>{`Пользователь ${isIdle ? "бездействует" : "активен"}`}</div>;
-}
+const isIdle = useIdle({ timeout: 10 * 1000 });
 ```
 
 <ExampleWrapper>
@@ -53,16 +47,10 @@ function Example() {
 Для этого хук предоставляет возможность подписываться на события `onIdle` и `onWakeUp`, например, чтобы логировать их как на примере ниже:
 
 ```tsx
-import { useIdle } from "@kundinos/react-hooks";
-
-function Example() {
-  useIdle({
-    onWakeUp: () => console.log("Пользователь проснулся!"),
-    onIdle: () => console.log("Пользователь бездействует…"),
-  });
-
-  return <div>Откройте консоль, чтобы увидеть результат :)</div>;
-}
+useIdle({
+  onWakeUp: () => console.log("Пользователь проснулся!"),
+  onIdle: () => console.log("Пользователь бездействует…"),
+});
 ```
 
 <ExampleWrapper>
