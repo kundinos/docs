@@ -2,4 +2,81 @@
 sidebar_position: 4
 ---
 
+import ExampleWrapper from "@site/src/components/ExampleWrapper";
+import SimpleExample from "@site/src/examples/use-interval/SimpleExample";
+import CustomIntervalExample from "@site/src/examples/use-interval/CustomIntervalExample";
+
 # useInterval
+
+:::tip
+Я наткнулся на этот хук в [посте Дэна Абрамова](https://overreacted.io/making-setinterval-declarative-with-react-hooks/) и был
+вдохновлен идеей хуков и тем, как они могут упростить код
+:::
+
+Позволяет упростить написание кода, который использует `setInterval` и сделать его более декларативным,
+а также избавляет разработчика оот необходимости писать код для удаления интервала — `useInterval` сделает это самостоятельно.
+
+## Пример использования
+
+```tsx
+import { useState } from "react";
+import { useInterval } from "@kundinos/react-hooks";
+
+function Example() {
+  const [seconds, setSeconds] = useState(0);
+
+  useInterval(() => {
+    setSeconds((prev) => prev + 1);
+  }, 1000);
+
+  return <div>{`Эта страница открыта ${seconds} секунд назад`}</div>;
+}
+```
+
+<ExampleWrapper>
+  <SimpleExample />
+</ExampleWrapper>
+
+## Дополнительные возможности
+
+`useInterval` позволяет изменять интервал времени динамически, а также ставить его на паузу, причём для реализации
+этого требуется очень мало кода, в отличии от императивного `setInterval`. Давайте рассмотрим на примере:
+
+```tsx
+import { useState } from "react";
+import { useInterval } from "@kundinos/react-hooks";
+
+function Example() {
+  const [counter, setCounter] = useState(1);
+  const [pause, setPause] = useState(false);
+  const [inputDelay, setInputDelay] = useState(1000);
+
+  useInterval(
+    () => {
+      setCounter((prev) => prev + 1);
+    },
+    // Если вместо задержки указать null, то интервал будет поставлен на паузу
+    pause ? null : inputDelay
+  );
+
+  return (
+    <div>
+      <div style={{ display: "flex", columnGap: "20px" }}>
+        <input
+          type="number"
+          value={inputDelay}
+          onChange={(e) => setInputDelay(+e.currentTarget.value)}
+        />
+        <button onClick={() => setPause((prev) => !prev)}>
+          {pause ? "Продолжить" : "Поставить на паузу"}
+        </button>
+      </div>
+      <div>{`Счетчик: ${counter}`}</div>
+    </div>
+  );
+}
+```
+
+<ExampleWrapper>
+  <CustomIntervalExample />
+</ExampleWrapper>
