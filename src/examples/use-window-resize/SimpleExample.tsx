@@ -1,13 +1,13 @@
 import React, { useState, memo } from "react";
 import BrowserOnly from "@docusaurus/BrowserOnly";
-import { useResize } from "@kundinos/react-hooks";
+import { useWindowResize } from "@kundinos/react-hooks";
 
 import plural from "@site/src/utils/plural";
 
 function Example() {
   const [count, setCount] = useState(0);
 
-  useResize(() => {
+  useWindowResize(() => {
     setCount((prev) => prev + 1);
   });
 
