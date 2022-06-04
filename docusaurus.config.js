@@ -59,11 +59,11 @@ const config = {
             items: [
               {
                 label: "react-hooks",
-                to: "/docs/docs/react-hooks/motivation",
+                to: "/docs/react-hooks/motivation",
               },
               {
                 label: "telegram-bot-api",
-                to: "/docs/docs/telegram-bot-api/motivation",
+                to: "/docs/telegram-bot-api/motivation",
               },
             ],
           },
