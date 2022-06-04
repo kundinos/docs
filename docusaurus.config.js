@@ -8,8 +8,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "@kundinos",
   tagline: "Projects by Yury Kundin",
-  url: "https://kundinos.ru",
-  baseUrl: "/docs/",
+  url: "http://www.kundinos.ru",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
