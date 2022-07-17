@@ -1,0 +1,54 @@
+---
+sidebar_position: 10
+---
+
+import ExampleWrapper from "@site/src/components/ExampleWrapper";
+import SimpleExample from "@site/src/examples/use-toggle/SimpleExample";
+
+# useToggle
+
+Зачастую в интерфейсах используются компоненты, которые имеют бинарное состояние включён/выключен, свёрнут/раскрыт и т.д.
+Подобные переключатели легко реализуются с помощью базового хука `useState`, но `useToggle` позволяет сделать это лаконичнее и избавиться от дублирования кода.
+Давайте рассмотрим на примере.
+
+## Без использования хука
+
+```tsx
+import { useState, useCallback } from "react";
+
+function Example() {
+  const [on, setOn] = useState(false);
+
+  const handleClick = useCallback(() => {
+    setOn((prevState) => !prevState);
+  }, []);
+
+  return (
+    <>
+      <div>{`Тёмная тема ${on ? "включена" : "выключена"}!`}</div>
+      <button onClick={handleClick}>Переключить</button>
+    </>
+  );
+}
+```
+
+## Используем useToggle
+
+```tsx
+import { useToggle } from "@kundinos/react-hooks";
+
+function Example() {
+  const [on, toggle] = useToggle(false); // Можно задавать начальное состояние
+
+  return (
+    <>
+      <div>{`Тёмная тема ${on ? "включена" : "выключена"}!`}</div>
+      <button onClick={toggle}>Переключить</button>
+    </>
+  );
+}
+```
+
+<ExampleWrapper>
+  <SimpleExample />
+</ExampleWrapper>
