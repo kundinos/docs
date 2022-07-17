@@ -31,6 +31,6 @@ npm install @kundinos/react-hooks
 - [useNativeEvent](./hooks/use-native-event) — помогает подписаться на событие любого HTML-элемента;
 - [useWindowResize](./hooks/use-window-resize) — подписываемся на событие изменения размера страницы;
 - [useScroll](./hooks/use-scroll) – реактивный доступ к позиции скрола;
-- [useSwitch](./hooks/use-switch) / [useToggle](./hooks/use-toggle) — упрощает создание компонентов с состояниями включен/выключен;
+- [useToggle](./hooks/use-toggle) — упрощает создание компонентов с состояниями включен/выключен;
 - [useTimeout](./hooks/use-timeout) — деклатиративная версия setTimeout;
 - [useWindowEvent](./hooks/use-window-event) — подписываемся на события `window`;
