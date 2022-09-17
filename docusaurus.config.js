@@ -45,6 +45,21 @@ const config = {
         },
         items: [
           {
+            href: "/docs/react-hooks/motivation",
+            label: "react-hooks",
+            position: "left",
+          },
+          {
+            href: "/docs/mock-media-queries/motivation",
+            label: "mock-media-queries",
+            position: "left",
+          },
+          {
+            href: "/docs/telegram-bot-api/motivation",
+            label: "telegram-bot-api",
+            position: "left",
+          },
+          {
             href: "https://github.com/kundinos",
             label: "GitHub",
             position: "right",
@@ -60,6 +75,10 @@ const config = {
               {
                 label: "react-hooks",
                 to: "/docs/react-hooks/motivation",
+              },
+              {
+                label: "mock-media-queries",
+                to: "/docs/mock-media-queries/motivation",
               },
               {
                 label: "telegram-bot-api",
