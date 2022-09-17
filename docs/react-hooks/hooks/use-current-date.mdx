@@ -1,10 +1,6 @@
----
-sidebar_position: 1
----
-
-import ExampleWrapper from '@site/src/components/ExampleWrapper';
-import SimpleExample from '@site/src/examples/use-current-date/SimpleExample.tsx';
-import ManyPeriodsExample from '@site/src/examples/use-current-date/ManyPeriodsExample.tsx';
+import ExampleWrapper from "@site/src/components/ExampleWrapper";
+import SimpleExample from "@site/src/examples/use-current-date/SimpleExample.tsx";
+import ManyPeriodsExample from "@site/src/examples/use-current-date/ManyPeriodsExample.tsx";
 
 # useCurrentDate
 
@@ -37,7 +33,9 @@ function Example() {
 }
 ```
 
-<ExampleWrapper><SimpleExample /></ExampleWrapper>
+<ExampleWrapper>
+  <SimpleExample />
+</ExampleWrapper>
 
 ## Период обновления даты
 
@@ -51,4 +49,6 @@ const currentDate = useCurrentDate({ every: 5 * 1000 });
 const currentDate = useCurrentDate({ every: "hour" });
 ```
 
-<ExampleWrapper title='Пример работы'><ManyPeriodsExample /></ExampleWrapper>
+<ExampleWrapper title="Пример работы">
+  <ManyPeriodsExample />
+</ExampleWrapper>
