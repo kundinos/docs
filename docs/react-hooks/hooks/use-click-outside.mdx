@@ -1,1 +1,84 @@
+import ExampleWrapper from "@site/src/components/ExampleWrapper";
+import SimpleExample from "@site/src/examples/use-click-outside/SimpleExample";
+import ComboExample from "@site/src/examples/use-click-outside/ComboExample";
+
 # useClickOutside
+
+Позволяет подписываться на событие клика вне указанного HTML-элемента, что может быть полезно в определенных случаях.
+Например, у нас есть задача создать всплывающую подсказку, которая должна закрываться по клику в любой другой части страницы, кроме самой подсказки.
+С помощью данного хука это можно реализовать буквально за несколько строк кода.
+
+## Пример использования
+
+```tsx
+import { useState } from "react";
+import { useClickOutside } from "@kundinos/react-hooks";
+import styles from "./Example.module.css";
+
+function Example() {
+  const [opened, setOpened] = useState(true);
+
+  // Хук вернёт ref, который нужно добавить на элемент, который мы отслеживаем
+  const ref = useClickOutside({
+    disabled: !opened, // Выключает срабатывание события, когда попап закрыт
+    handleEvent: () => {
+      setOpened(false);
+    },
+  });
+
+  return (
+    <div className={styles.container}>
+      <button className={styles.button} onClick={() => setOpened(true))}>
+        Открыть подсказку
+      </button>
+
+      {opened && (
+        <div ref={ref} className={styles.popup}>
+          Этот попап можно закрыть, если кликнуть на любую часть страницы за его пределами
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+<ExampleWrapper>
+  <SimpleExample />
+</ExampleWrapper>
+
+## Пример комбинации хуков
+
+Пример выше можно реализовать ещё короче, если использовать ещё один кастомный хук из этой библиотеки, чтобы облегчить работу с состоянием.
+В данном случае для решения задачи идеально подходит [useToggle](./use-toggle.mdx), например вот так:
+
+```tsx
+import { useClickOutside, useToggle } from "@kundinos/react-hooks";
+import styles from "./Example.module.css";
+
+function Example() {
+  const [opened, toggle] = useToggle(true);
+
+  const ref = useClickOutside({
+    disabled: !opened,
+    handleEvent: toggle,
+  });
+
+  return (
+    <div className={styles.container}>
+      <button className={styles.button} onClick={toggle}>
+        Открыть подсказку
+      </button>
+
+      {opened && (
+        <div ref={ref} className={styles.popup}>
+          Этот попап можно закрыть, если кликнуть на любую часть страницы за его пределами
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+<ExampleWrapper>
+  <ComboExample />
+</ExampleWrapper>
