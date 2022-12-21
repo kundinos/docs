@@ -1,0 +1,46 @@
+import ExampleWrapper from "@site/src/components/ExampleWrapper";
+import SimpleExample from "@site/src/examples/use-keyboard-events/SimpleExample";
+
+# useKeyboardEvents
+
+Предназначен для упрощения подписки на события клавиатуры, когда, к примеру, вам нужно отслеживать
+нажатие Escape, чтобы закрыть модальное окна, перелистнуть слайд в галерее по нажатию на стрелки влево/вправо и прочее.
+
+## Пример использования
+
+```tsx
+import { memo, useState } from "react";
+import { useKeyboardEvents } from "@kundinos/react-hooks";
+
+function Counter() {
+  const [message, setMessage] = useState("Нажимайте на клавиши");
+
+  useKeyboardEvents({
+    onArrowDown: () => {
+      setMessage("Нажали стрелочку вниз");
+    },
+    onArrowUp: () => {
+      setMessage("Нажали стрелочку вверх");
+    },
+    onArrowLeft: () => {
+      setMessage("Нажали стрелочку влево");
+    },
+    onArrowRight: () => {
+      setMessage("Нажали стрелочку вправо");
+    },
+    onEscape: () => {
+      setMessage("Нажали Escape");
+    },
+  });
+
+  return (
+    <div>
+      <span>{message}</span>
+    </div>
+  );
+}
+```
+
+<ExampleWrapper>
+  <SimpleExample />
+</ExampleWrapper>
